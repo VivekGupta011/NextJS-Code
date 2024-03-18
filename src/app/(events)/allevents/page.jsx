@@ -1,10 +1,10 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Event from "../addevent/image/Event";
+import Event from "../../(events)/addevent/image/Event";
 import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import BackSvg from "../../utils/BackSvg";
+import BackSvg from "../../../utils/BackSvg";
 
 function Page() {
   const router = useRouter();
@@ -67,6 +67,7 @@ function Page() {
           },
         }
       );
+
       // Update the edited event in the events array
       setEvents(
         events.map((event) =>

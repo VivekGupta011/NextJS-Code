@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
-import BackSvg from "../../utils/BackSvg";
+import BackSvg from "../../../utils/BackSvg";
 
 function Page() {
   const router = useRouter();

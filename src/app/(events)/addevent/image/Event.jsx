@@ -1,11 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import axios from "axios";
 import { useForm } from "react-hook-form";
 // import Img1 from "./image1.png";
-import Link from "next/link";
 import Image from "next/image";
-import Img1 from "../../../../public/images/spidy.jpg"; 
 
 
 function Event({ data, onDelete, onSubmit }) {
