@@ -4,13 +4,12 @@ import { useForm } from "react-hook-form";
 // import Img1 from "./image1.png";
 import Image from "next/image";
 
-
 function Event({ data, onDelete, onSubmit }) {
   const [showModal, setShowModal] = useState(false);
   const { register, handleSubmit, reset } = useForm();
 
   const onDeleteClick = async () => {
-    if(data._id){
+    if (data._id) {
       onDelete(data._id); // Call the onDelete function passed as props
     }
   };
@@ -21,8 +20,7 @@ function Event({ data, onDelete, onSubmit }) {
   };
 
   const handleFormSubmit = async (formData) => {
-    if(formData){
-
+    if (formData) {
       await onSubmit(formData); // Call the onSubmit function passed as props
       setShowModal(false); // Close the modal after saving
     }
@@ -32,10 +30,17 @@ function Event({ data, onDelete, onSubmit }) {
 
   const renderMedia = () => {
     // Check if eventImage contains ".mp4" extension
-    if (data.eventImage && data.eventImage.includes(".mp4") || data.eventImage.includes(".webm") ||  data.eventImage.includes(".ogv") || data.eventImage.includes(".3gp") || data.eventImage.includes(".avi")) {
+    if (
+      (data.eventImage && data.eventImage.includes(".mp4")) ||
+      data.eventImage.includes(".webm") ||
+      data.eventImage.includes(".ogv") ||
+      data.eventImage.includes(".3gp") ||
+      data.eventImage.includes(".avi")
+    ) {
       return (
         <div className="relative w-full h-[300px]">
           <video
+            autoPlay
             className="absolute top-0 left-0 w-full h-full"
             controls
             src={`/images/${data.eventImage}`}
@@ -57,34 +62,32 @@ function Event({ data, onDelete, onSubmit }) {
 
   return (
     <div className="bg-white shadow-md rounded-md overflow-hidden">
-       
-     {/* Conditionally render either the image or the YouTube video */}
-     {renderMedia()}
+      {/* Conditionally render either the image or the YouTube video */}
+      {renderMedia()}
       <div className="p-4">
         <h5 className="text-lg font-medium mb-2">
           Event Name: {data.eventName}
         </h5>
         <p className="text-black">Date: {createdAtDate.toLocaleDateString()}</p>
         <p className="text-gray-700">{data.eventDescription}</p>
-        
 
         <div className="flex mt-4 item-center justify-between">
           <div>
-          <button
-            onClick={handleEditClick}
-            className="text-blue-500 mr-5 focus:outline-none"
-          >
-            Edit
-          </button>
+            <button
+              onClick={handleEditClick}
+              className="text-blue-500 mr-5 focus:outline-none"
+            >
+              Edit
+            </button>
           </div>
-        <div>
-        <button
-            onClick={onDeleteClick}
-            className="text-red-500 focus:outline-none"
-          >
-            Delete
-          </button>
-        </div>
+          <div>
+            <button
+              onClick={onDeleteClick}
+              className="text-red-500 focus:outline-none"
+            >
+              Delete
+            </button>
+          </div>
           <a
             href={data.eventLink}
             className="text-blue-500"
