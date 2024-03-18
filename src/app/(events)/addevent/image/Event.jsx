@@ -30,30 +30,36 @@ function Event({ data, onDelete, onSubmit }) {
 
   const createdAtDate = new Date(data.updatedAt);
 
-  return (
-    <div className="bg-white shadow-md rounded-md overflow-hidden">
-       
-     {/* Conditionally render either the image or the YouTube video */}
-     {data.eventVideo ? (
+  const renderMedia = () => {
+    // Check if eventImage contains ".mp4" extension
+    if (data.eventImage && data.eventImage.includes(".mp4") || data.eventImage.includes(".webm") ||  data.eventImage.includes(".ogv") || data.eventImage.includes(".3gp") || data.eventImage.includes(".avi")) {
+      return (
         <div className="relative w-full h-[300px]">
-          <iframe
+          <video
             className="absolute top-0 left-0 w-full h-full"
-            src={data.eventVideo}
-            frameBorder="0"
-            allowFullScreen
-          ></iframe>
+            controls
+            src={`/images/${data.eventImage}`}
+          />
         </div>
-      ) : (
+      );
+    } else {
+      return (
         <Image
-          // src={Img1}
-          // src="/images/spidy.jpg"
           src={`/images/${data.eventImage}`}
           alt={data.eventName}
           width={400}
           height={300}
           className="w-full h-60 object-cover"
         />
-      )}
+      );
+    }
+  };
+
+  return (
+    <div className="bg-white shadow-md rounded-md overflow-hidden">
+       
+     {/* Conditionally render either the image or the YouTube video */}
+     {renderMedia()}
       <div className="p-4">
         <h5 className="text-lg font-medium mb-2">
           Event Name: {data.eventName}

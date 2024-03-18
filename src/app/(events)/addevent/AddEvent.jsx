@@ -33,7 +33,7 @@ export default function AddEvent() {
   const onSubmit = async (formData) => {
     // Check if the event type is set to "image" and if an image file is selected
     if (!fileName) {
-      toast("Please select an image!.");
+      toast("Please select an media file!.");
       return;
     }
 
@@ -83,7 +83,7 @@ export default function AddEvent() {
         if (response.ok) {
           // If upload successful, get the uploaded image URL
           setFileName(file.name);
-          toast.success("Image uploaded successfully!.");
+          toast.success("Media file uploaded successfully!.");
           return file.name;
         } else {
           console.error("Error uploading file:", response.statusText);
@@ -219,7 +219,8 @@ export default function AddEvent() {
                 )}
               </div>
 
-              {/* {eventType === "image" && ( */}
+
+              {!eventType && (
               <div>
                 <p className="mt-3">Event Image</p>
                 <Upload
@@ -228,14 +229,28 @@ export default function AddEvent() {
                   setUploadedImageUrl={setUploadedImageUrl}
                 />
               </div>
-              {/* )} */}
+              )}
+              {eventType === "image" && (
+              <div>
+                <p className="mt-3">Event Image</p>
+                <Upload
+                  fileName="Event Image Here"
+                  handleUpload={handleUpload}
+                  setUploadedImageUrl={setUploadedImageUrl}
+                />
+              </div>
+              )}
 
-              {/* {eventType === "video" && (
+              {eventType === "video" && (
                 <div>
                   <p className="mt-3">Event Video</p>
-                  <Upload fileName="Event Video Here" />
+                  <Upload
+                  fileName="Event Video Here"
+                  handleUpload={handleUpload}
+                  setUploadedImageUrl={setUploadedImageUrl}
+                />
                 </div>
-              )} */}
+              )}
 
               {/* <p className="mt-6">Upload Attendee List Excel</p> */}
               {/* <Upload fileName="Attendee List Excel" /> */}
