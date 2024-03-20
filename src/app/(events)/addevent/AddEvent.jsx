@@ -275,7 +275,7 @@ export default function AddEvent() {
                   SUBMIT
                 </button>
 
-                <Link href="/" className="text-blue-500">
+                <Link href="/allevents" className="text-blue-500">
                   See ALL Events
                 </Link>
               </div>
