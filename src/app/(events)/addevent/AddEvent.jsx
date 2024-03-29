@@ -33,7 +33,7 @@ export default function AddEvent() {
   const onSubmit = async (formData) => {
     // Check if the event type is set to "image" and if an image file is selected
     if (!fileName) {
-      toast("Please select an media file!.");
+      toast("Please select and upload an media file!.");
       return;
     }
 
